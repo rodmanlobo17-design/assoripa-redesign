@@ -1,0 +1,3016 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+content="ASSORIPA — Associação Rio-Branquense de Proteção aos Animais. Uma segunda chance começa com você.">
+
+<title>ASSORIPA | Proteção e cuidado aos animais</title>
+
+<style>
+
+/* =========================
+   VARIÁVEIS
+========================= */
+
+:root{
+  --green:#176b3a;
+  --green2:#238b4d;
+  --lime:#a8df68;
+  --cream:#f7f3e8;
+  --dark:#08251a;
+  --dark2:#0d3526;
+  --text:#183027;
+  --muted:#66766d;
+  --white:#fff;
+  --line:#e3e0d4;
+  --shadow:0 18px 50px rgba(5,35,23,.12);
+  --radius:24px;
+}
+
+/* =========================
+   RESET
+========================= */
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Inter,Arial,Helvetica,sans-serif;
+  color:var(--text);
+  background:var(--cream);
+  line-height:1.55;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+button{
+  font:inherit;
+  cursor:pointer;
+}
+
+img{
+  max-width:100%;
+  display:block;
+}
+
+.container{
+  width:min(1180px,92%);
+  margin:auto;
+}
+
+/* =========================
+   TOPO
+========================= */
+
+.topbar{
+  background:var(--dark);
+  color:#dcebdc;
+  font-size:13px;
+  padding:8px 0;
+}
+
+.topbar .container{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(8,37,26,.96);
+  backdrop-filter:blur(12px);
+  color:#fff;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.nav{
+  height:78px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:25px;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:900;
+  letter-spacing:-.5px;
+}
+
+.logo-mark{
+  width:45px;
+  height:45px;
+  border:2px solid var(--lime);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font-size:22px;
+}
+
+.logo small{
+  display:block;
+  font-size:10px;
+  font-weight:500;
+  color:#b9cabe;
+  letter-spacing:.2px;
+}
+
+.navlinks{
+  display:flex;
+  gap:22px;
+  align-items:center;
+  font-size:14px;
+}
+
+.navlinks a{
+  opacity:.88;
+  transition:.2s;
+}
+
+.navlinks a:hover{
+  color:var(--lime);
+  opacity:1;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  border:0;
+  border-radius:999px;
+  padding:13px 20px;
+  font-weight:800;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+.btn-primary{
+  background:var(--lime);
+  color:#14321f;
+}
+
+.btn-dark{
+  background:var(--dark);
+  color:#fff;
+}
+
+.btn-outline{
+  border:1px solid rgba(255,255,255,.35);
+  color:#fff;
+  background:transparent;
+}
+
+.menu-btn{
+  display:none;
+  background:none;
+  color:#fff;
+  border:0;
+  font-size:28px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  min-height:680px;
+  color:#fff;
+  position:relative;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+
+  background:
+  linear-gradient(
+    90deg,
+    rgba(4,24,16,.94) 0%,
+    rgba(4,24,16,.75) 42%,
+    rgba(4,24,16,.12) 78%
+  ),
+  url('https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1800&q=85')
+  center/cover;
+}
+
+.hero:after{
+  content:"";
+  position:absolute;
+  inset:auto 0 0;
+  height:110px;
+  background:linear-gradient(transparent,var(--cream));
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:650px;
+  padding:90px 0;
+}
+
+.eyebrow{
+  color:var(--lime);
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:13px;
+  margin-bottom:15px;
+}
+
+h1{
+  font-size:clamp(44px,6vw,78px);
+  line-height:.98;
+  letter-spacing:-3px;
+  margin-bottom:24px;
+}
+
+h1 span{
+  color:var(--lime);
+}
+
+.hero p{
+  font-size:18px;
+  max-width:590px;
+  color:#e5eee7;
+  margin-bottom:30px;
+}
+
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+/* =========================
+   SEÇÕES
+========================= */
+
+.section{
+  padding:90px 0;
+}
+
+.section-head{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:25px;
+  margin-bottom:32px;
+}
+
+.section-head h2{
+  font-size:clamp(32px,4vw,48px);
+  line-height:1.05;
+  letter-spacing:-1.7px;
+  color:var(--dark);
+}
+
+.section-head p{
+  max-width:530px;
+  color:var(--muted);
+}
+
+/* =========================
+   IMPACTO
+========================= */
+
+.impact{
+  margin-top:-55px;
+  position:relative;
+  z-index:4;
+}
+
+.impact-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+
+.impact-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:28px;
+  box-shadow:var(--shadow);
+}
+
+.icon{
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  background:#eaf5dd;
+  display:grid;
+  place-items:center;
+  font-size:22px;
+  margin-bottom:17px;
+}
+
+.impact-card strong{
+  font-size:28px;
+  display:block;
+  color:var(--dark);
+}
+
+.impact-card span{
+  font-size:14px;
+  color:var(--muted);
+}
+
+/* =========================
+   ANIMAIS
+========================= */
+
+.animals{
+  background:#fff;
+}
+
+.filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-bottom:26px;
+}
+
+.filter{
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:999px;
+  padding:10px 16px;
+  font-weight:700;
+  color:#53645b;
+}
+
+.filter.active,
+.filter:hover{
+  background:var(--green);
+  color:#fff;
+  border-color:var(--green);
+}
+
+.animal-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.animal{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:22px;
+  overflow:hidden;
+  transition:.25s;
+  box-shadow:0 8px 28px rgba(0,0,0,.05);
+}
+
+.animal:hover{
+  transform:translateY(-5px);
+  box-shadow:var(--shadow);
+}
+
+.animal img{
+  width:100%;
+  height:230px;
+  object-fit:cover;
+}
+
+.animal-body{
+  padding:18px;
+}
+
+.animal-body h3{
+  font-size:21px;
+  margin-bottom:3px;
+}
+
+.meta{
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:14px;
+}
+
+.tag{
+  display:inline-block;
+  background:#edf7e5;
+  color:var(--green);
+  font-weight:800;
+  font-size:11px;
+  border-radius:999px;
+  padding:5px 9px;
+  margin-bottom:14px;
+}
+
+.animal .btn{
+  width:100%;
+  padding:11px 15px;
+}
+
+/* =========================
+   SOBRE
+========================= */
+
+.about{
+  background:var(--cream);
+}
+
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  align-items:center;
+}
+
+.photo-stack{
+  position:relative;
+  min-height:500px;
+}
+
+.photo-main{
+  position:absolute;
+  left:0;
+  top:0;
+  width:78%;
+  height:430px;
+  object-fit:cover;
+  border-radius:30px;
+  box-shadow:var(--shadow);
+}
+
+.photo-small{
+  position:absolute;
+  right:0;
+  bottom:0;
+  width:48%;
+  height:250px;
+  object-fit:cover;
+  border:10px solid var(--cream);
+  border-radius:28px;
+}
+
+.about-copy h2{
+  font-size:clamp(34px,4vw,52px);
+  line-height:1.02;
+  letter-spacing:-2px;
+  color:var(--dark);
+  margin-bottom:20px;
+}
+
+.about-copy p{
+  color:var(--muted);
+  margin-bottom:18px;
+}
+
+.timeline{
+  margin-top:28px;
+  border-left:2px solid #cbd9c8;
+  padding-left:22px;
+}
+
+.timeline div{
+  margin-bottom:22px;
+}
+
+.timeline strong{
+  display:block;
+  color:var(--green);
+}
+
+/* =========================
+   COMO AJUDAR
+========================= */
+
+.help{
+  background:var(--dark);
+  color:#fff;
+}
+
+.help .section-head h2{
+  color:#fff;
+}
+
+.help .section-head p{
+  color:#bfd0c4;
+}
+
+.help-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.help-card{
+  padding:28px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:22px;
+  background:rgba(255,255,255,.05);
+}
+
+.help-card h3{
+  margin:12px 0 7px;
+  font-size:22px;
+}
+
+.help-card p{
+  color:#bcd0c1;
+  font-size:14px;
+}
+
+.help-card .icon{
+  background:#1b4933;
+}
+
+/* =========================
+   DOAÇÃO
+========================= */
+
+.donation{
+  background:#f0eadb;
+}
+
+.donation-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+}
+
+.donation-box{
+  background:#fff;
+  border-radius:28px;
+  padding:34px;
+  box-shadow:var(--shadow);
+}
+
+.donation-box h3{
+  font-size:30px;
+  margin-bottom:12px;
+  color:var(--dark);
+}
+
+.donation-list{
+  list-style:none;
+  margin:22px 0;
+}
+
+.donation-list li{
+  padding:10px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.pix{
+  background:var(--dark);
+  color:#fff;
+  border-radius:22px;
+  padding:28px;
+}
+
+.pix small{
+  color:#b9cabe;
+}
+
+.pix-code{
+  margin:15px 0;
+  background:#fff;
+  color:#18271f;
+  border-radius:13px;
+  padding:14px;
+  word-break:break-all;
+  font-size:13px;
+}
+
+/* =========================
+   TRANSPARÊNCIA
+========================= */
+
+.transparency{
+  background:#fff;
+}
+
+.trans-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+}
+
+.trans-box{
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:28px;
+}
+
+.trans-list{
+  list-style:none;
+  display:grid;
+  gap:12px;
+  margin-top:20px;
+}
+
+.trans-list li{
+  padding:15px;
+  border-radius:14px;
+  background:#f7f6ef;
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+}
+
+/* =========================
+   NOTÍCIAS
+========================= */
+
+.news{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.news-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:22px;
+  overflow:hidden;
+}
+
+.news-card img{
+  height:190px;
+  width:100%;
+  object-fit:cover;
+}
+
+.news-card div{
+  padding:20px;
+}
+
+.news-card small{
+  color:var(--green);
+  font-weight:800;
+}
+
+.news-card h3{
+  margin:7px 0;
+  font-size:21px;
+}
+
+.news-card p{
+  color:var(--muted);
+  font-size:14px;
+}
+
+/* =========================
+   INSTAGRAM
+========================= */
+
+.instagram{
+  background:var(--cream);
+}
+
+.insta-grid{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:10px;
+}
+
+.insta-grid img{
+  height:170px;
+  width:100%;
+  object-fit:cover;
+  border-radius:15px;
+}
+
+/* =========================
+   CONTATO
+========================= */
+
+.contact{
+  background:#fff;
+}
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+}
+
+.contact-card{
+  border:1px solid var(--line);
+  border-radius:25px;
+  padding:32px;
+}
+
+.contact-item{
+  display:flex;
+  gap:14px;
+  margin:20px 0;
+}
+
+.contact-item b{
+  display:block;
+  color:var(--dark);
+}
+
+.contact-item span{
+  color:var(--muted);
+  font-size:14px;
+}
+
+.map{
+  min-height:330px;
+  border-radius:25px;
+  background:
+  linear-gradient(rgba(7,37,25,.2),rgba(7,37,25,.2)),
+  url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1000&q=80')
+  center/cover;
+
+  display:grid;
+  place-items:center;
+  color:#fff;
+}
+
+.map .btn{
+  background:#fff;
+  color:var(--dark);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  background:#061b13;
+  color:#fff;
+  padding:45px 0 25px;
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:35px;
+  padding-bottom:35px;
+}
+
+footer p,
+footer a{
+  color:#a9beb0;
+  font-size:14px;
+}
+
+footer h4{
+  margin-bottom:13px;
+}
+
+footer ul{
+  list-style:none;
+  display:grid;
+  gap:8px;
+}
+
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.1);
+  padding-top:20px;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  color:#8da395;
+  font-size:12px;
+}
+
+/* =========================
+   BARRA MOBILE
+========================= */
+
+.mobilebar{
+  display:none;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  z-index:100;
+  display:none;
+  place-items:center;
+  padding:20px;
+}
+
+.modal.show{
+  display:grid;
+}
+
+.modal-box{
+  width:min(680px,100%);
+  background:#fff;
+  border-radius:26px;
+  overflow:hidden;
+  position:relative;
+  max-height:90vh;
+  overflow-y:auto;
+}
+
+.modal-box img{
+  height:280px;
+  width:100%;
+  object-fit:cover;
+}
+
+.modal-content{
+  padding:28px;
+}
+
+.close{
+  position:absolute;
+  right:15px;
+  top:15px;
+  width:40px;
+  height:40px;
+  border:0;
+  border-radius:50%;
+  background:#fff;
+  font-size:23px;
+}
+
+.notice{
+  font-size:12px;
+  color:#718077;
+  background:#f4f5ef;
+  border-radius:12px;
+  padding:12px;
+  margin-top:15px;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media(max-width:950px){
+
+  .navlinks{
+    display:none;
+  }
+
+  .menu-btn{
+    display:block;
+  }
+
+  .impact-grid,
+  .animal-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .about-grid,
+  .donation-grid,
+  .trans-grid,
+  .contact-grid{
+    grid-template-columns:1fr;
+  }
+
+  .help-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .news{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .insta-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .mobilebar{
+    display:flex;
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    background:#fff;
+    z-index:60;
+    border-top:1px solid var(--line);
+    justify-content:space-around;
+    padding:8px 5px;
+  }
+
+  .mobilebar a{
+    font-size:10px;
+    text-align:center;
+    color:#526158;
+  }
+
+  .mobilebar span{
+    display:block;
+    font-size:18px;
+  }
+
+  body{
+    padding-bottom:62px;
+  }
+}
+
+/* =========================
+   CELULAR
+========================= */
+
+@media(max-width:600px){
+
+  .topbar{
+    display:none;
+  }
+
+  .nav{
+    height:68px;
+  }
+
+  .logo-mark{
+    width:39px;
+    height:39px;
+  }
+
+  .logo{
+    font-size:14px;
+  }
+
+  .logo small{
+    font-size:8px;
+  }
+
+  .hero{
+    min-height:690px;
+
+    background:
+    linear-gradient(
+      90deg,
+      rgba(4,24,16,.9),
+      rgba(4,24,16,.45)
+    ),
+    url('https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1000&q=85')
+    center/cover;
+  }
+
+  .hero-content{
+    padding:80px 0 120px;
+  }
+
+  .hero p{
+    font-size:16px;
+  }
+
+  h1{
+    letter-spacing:-2px;
+  }
+
+  .section{
+    padding:65px 0;
+  }
+
+  .section-head{
+    display:block;
+  }
+
+  .section-head p{
+    margin-top:12px;
+  }
+
+  .impact{
+    margin-top:-25px;
+  }
+
+  .impact-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .impact-card{
+    padding:20px;
+  }
+
+  .animal-grid{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  .animal img{
+    height:165px;
+  }
+
+  .animal-body{
+    padding:13px;
+  }
+
+  .animal-body h3{
+    font-size:17px;
+  }
+
+  .photo-stack{
+    min-height:420px;
+  }
+
+  .photo-main{
+    height:350px;
+  }
+
+  .photo-small{
+    height:190px;
+  }
+
+  .help-grid{
+    grid-template-columns:1fr;
+  }
+
+  .news{
+    grid-template-columns:1fr;
+  }
+
+  .insta-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .insta-grid img{
+    height:110px;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr;
+  }
+
+  .footer-bottom{
+    display:block;
+  }
+
+  .footer-bottom div{
+    margin-bottom:6px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     BARRA SUPERIOR
+========================= -->
+
+<div class="topbar">
+
+  <div class="container">
+
+    <span>
+      🐾 Associação Rio-Branquense de Proteção aos Animais
+    </span>
+
+    <span>
+      Visconde do Rio Branco — MG
+    </span>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+<nav class="container nav">
+
+  <a class="logo" href="#inicio">
+
+    <span class="logo-mark">
+      🐾
+    </span>
+
+    <span>
+
+      ASSORIPA
+
+      <small>
+        Proteção aos Animais
+      </small>
+
+    </span>
+
+  </a>
+
+
+  <div class="navlinks">
+
+    <a href="#inicio">Início</a>
+
+    <a href="#sobre">Sobre</a>
+
+    <a href="#animais">Animais</a>
+
+    <a href="#ajudar">Como ajudar</a>
+
+    <a href="#transparencia">
+      Transparência
+    </a>
+
+    <a href="#noticias">
+      Notícias
+    </a>
+
+    <a href="#contato">
+      Contato
+    </a>
+
+    <a class="btn btn-primary"
+       href="#doacao">
+
+      ❤️ Doar agora
+
+    </a>
+
+  </div>
+
+
+  <button
+    class="menu-btn"
+    onclick="toggleMenu()">
+
+    ☰
+
+  </button>
+
+</nav>
+
+</header>
+
+
+<!-- =========================
+     CONTEÚDO
+========================= -->
+
+<main>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section id="inicio" class="hero">
+
+  <div class="container hero-content">
+
+    <div class="eyebrow">
+      ASSORIPA • Visconde do Rio Branco
+    </div>
+
+    <h1>
+
+      Uma segunda chance começa
+
+      <span>
+        com você.
+      </span>
+
+    </h1>
+
+    <p>
+
+      Na ASSORIPA, cada animal resgatado merece
+      cuidado, respeito e muito amor.
+      Ajude a transformar vidas e faça parte dessa história.
+
+    </p>
+
+    <div class="hero-actions">
+
+      <a
+        class="btn btn-primary"
+        href="#doacao">
+
+        ❤️ Ajudar a ASSORIPA
+
+      </a>
+
+      <a
+        class="btn btn-outline"
+        href="#animais">
+
+        🐾 Conheça os animais
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     IMPACTO
+========================= -->
+
+<section class="impact">
+
+  <div class="container impact-grid">
+
+
+    <div class="impact-card">
+
+      <div class="icon">
+        🐾
+      </div>
+
+      <strong>
+        + de 100
+      </strong>
+
+      <span>
+        Exemplo de animais atendidos*
+      </span>
+
+    </div>
+
+
+    <div class="impact-card">
+
+      <div class="icon">
+        🏠
+      </div>
+
+      <strong>
+        + de 50
+      </strong>
+
+      <span>
+        Exemplo de resgates*
+      </span>
+
+    </div>
+
+
+    <div class="impact-card">
+
+      <div class="icon">
+        ❤️
+      </div>
+
+      <strong>
+        + de 30
+      </strong>
+
+      <span>
+        Exemplo de adoções*
+      </span>
+
+    </div>
+
+
+    <div class="impact-card">
+
+      <div class="icon">
+        🥣
+      </div>
+
+      <strong>
+        Todos os dias
+      </strong>
+
+      <span>
+        Cuidados e alimentação
+      </span>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     ANIMAIS
+========================= -->
+
+<section id="animais" class="section animals">
+
+<div class="container">
+
+
+  <div class="section-head">
+
+    <div>
+
+      <div class="eyebrow">
+        Adoção
+      </div>
+
+      <h2>
+        Conheça nossos animais
+      </h2>
+
+    </div>
+
+    <p>
+
+      Eles estão esperando por um lar.
+      Escolha um perfil para conhecer sua história
+      e saber como ajudar.
+
+    </p>
+
+  </div>
+
+
+  <div class="filters">
+
+    <button
+      class="filter active"
+      data-filter="todos">
+
+      Todos
+
+    </button>
+
+    <button
+      class="filter"
+      data-filter="cachorro">
+
+      Cachorros
+
+    </button>
+
+    <button
+      class="filter"
+      data-filter="gato">
+
+      Gatos
+
+    </button>
+
+    <button
+      class="filter"
+      data-filter="filhote">
+
+      Filhotes
+
+    </button>
+
+    <button
+      class="filter"
+      data-filter="adulto">
+
+      Adultos
+
+    </button>
+
+    <button
+      class="filter"
+      data-filter="idoso">
+
+      Idosos
+
+    </button>
+
+  </div>
+
+
+  <div
+    class="animal-grid"
+    id="animalGrid">
+
+  </div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     SOBRE
+========================= -->
+
+<section id="sobre" class="section about">
+
+<div class="container about-grid">
+
+
+  <div class="photo-stack">
+
+    <img
+      class="photo-main"
+      src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=1000&q=85"
+      alt="Cachorro">
+
+    <img
+      class="photo-small"
+      src="https://images.unsplash.com/photo-1519052537078-e6302a4968d4?auto=format&fit=crop&w=700&q=85"
+      alt="Gato">
+
+  </div>
+
+
+  <div class="about-copy">
+
+    <div class="eyebrow">
+      Sobre a ASSORIPA
+    </div>
+
+    <h2>
+      Nosso propósito é proteger, cuidar e dar voz.
+    </h2>
+
+    <p>
+
+      A ASSORIPA é uma associação dedicada à
+      proteção dos animais em Visconde do Rio Branco
+      e região.
+
+    </p>
+
+    <p>
+
+      Este novo site foi pensado para aproximar
+      a associação de quem quer adotar, doar,
+      voluntariar ou simplesmente ajudar.
+
+    </p>
+
+    <p>
+
+      Os textos, números, fotos e documentos
+      definitivos devem ser fornecidos e aprovados
+      pela ASSORIPA antes da publicação.
+
+    </p>
+
+
+    <div class="timeline">
+
+      <div>
+
+        <strong>
+          Fundação
+        </strong>
+
+        <span>
+          Conte aqui a origem da associação.
+        </span>
+
+      </div>
+
+
+      <div>
+
+        <strong>
+          Crescimento
+        </strong>
+
+        <span>
+          Conte os principais momentos e projetos.
+        </span>
+
+      </div>
+
+
+      <div>
+
+        <strong>
+          Hoje
+        </strong>
+
+        <span>
+          Mostre o trabalho atual e os próximos objetivos.
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     COMO AJUDAR
+========================= -->
+
+<section id="ajudar" class="section help">
+
+<div class="container">
+
+
+  <div class="section-head">
+
+    <div>
+
+      <div class="eyebrow">
+        Faça parte
+      </div>
+
+      <h2>
+        Como você pode ajudar
+      </h2>
+
+    </div>
+
+    <p>
+
+      Existem várias formas de transformar uma vida.
+      Escolha a que mais combina com você.
+
+    </p>
+
+  </div>
+
+
+  <div class="help-grid">
+
+
+    <div class="help-card">
+
+      <div class="icon">
+        ❤️
+      </div>
+
+      <h3>
+        Doe
+      </h3>
+
+      <p>
+        Ajude com alimentação,
+        medicamentos e cuidados.
+      </p>
+
+      <br>
+
+      <a
+        class="btn btn-primary"
+        href="#doacao">
+
+        Saiba mais →
+
+      </a>
+
+    </div>
+
+
+    <div class="help-card">
+
+      <div class="icon">
+        🏠
+      </div>
+
+      <h3>
+        Adote
+      </h3>
+
+      <p>
+        Ofereça um lar para um animal
+        que espera por uma família.
+      </p>
+
+      <br>
+
+      <a
+        class="btn btn-primary"
+        href="#animais">
+
+        Ver animais →
+
+      </a>
+
+    </div>
+
+
+    <div class="help-card">
+
+      <div class="icon">
+        🤝
+      </div>
+
+      <h3>
+        Seja voluntário
+      </h3>
+
+      <p>
+        Dedique seu tempo,
+        conhecimento ou talento.
+      </p>
+
+      <br>
+
+      <a
+        class="btn btn-primary"
+        href="#contato">
+
+        Quero ajudar →
+
+      </a>
+
+    </div>
+
+
+    <div class="help-card">
+
+      <div class="icon">
+        🥣
+      </div>
+
+      <h3>
+        Doe ração
+      </h3>
+
+      <p>
+        Contribua diretamente
+        com a alimentação dos animais.
+      </p>
+
+      <br>
+
+      <a
+        class="btn btn-primary"
+        href="#contato">
+
+        Saiba como →
+
+      </a>
+
+    </div>
+
+
+    <div class="help-card">
+
+      <div class="icon">
+        📢
+      </div>
+
+      <h3>
+        Divulgue
+      </h3>
+
+      <p>
+        Compartilhe animais,
+        campanhas e histórias.
+      </p>
+
+      <br>
+
+      <a
+        class="btn btn-primary"
+        href="#instagram">
+
+        Compartilhar →
+
+      </a>
+
+    </div>
+
+
+    <div class="help-card">
+
+      <div class="icon">
+        📸
+      </div>
+
+      <h3>
+        Conte nossa história
+      </h3>
+
+      <p>
+        Ajude a levar o trabalho da
+        ASSORIPA para mais pessoas.
+      </p>
+
+      <br>
+
+      <a
+        class="btn btn-primary"
+        href="#contato">
+
+        Fale conosco →
+
+      </a>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     DOAÇÃO
+========================= -->
+
+<section id="doacao" class="section donation">
+
+<div class="container donation-grid">
+
+
+  <div class="donation-box">
+
+    <div class="eyebrow">
+      Apoie o trabalho
+    </div>
+
+    <h3>
+      Sua ajuda vira cuidado.
+    </h3>
+
+    <p>
+
+      As informações abaixo são um modelo
+      de apresentação. Substitua pelos dados
+      oficiais fornecidos pela ASSORIPA.
+
+    </p>
+
+
+    <ul class="donation-list">
+
+      <li>
+        🐾 Alimentação
+      </li>
+
+      <li>
+        💊 Medicamentos
+      </li>
+
+      <li>
+        🩺 Atendimento veterinário
+      </li>
+
+      <li>
+        🏠 Estrutura e manutenção
+      </li>
+
+      <li>
+        🧼 Higiene
+      </li>
+
+      <li>
+        🚑 Resgates e emergências
+      </li>
+
+    </ul>
+
+  </div>
+
+
+  <div class="pix">
+
+    <small>
+      FAÇA UMA DOAÇÃO
+    </small>
+
+    <h3 style="font-size:34px;margin-top:6px">
+      Ajude a cuidar.
+    </h3>
+
+    <p style="color:#c7d9cc">
+
+      Você pode substituir este campo pela
+      chave PIX oficial da ASSORIPA.
+
+    </p>
+
+
+    <div
+      class="pix-code"
+      id="pixKey">
+
+      COLOQUE-AQUI-A-CHAVE-PIX-OFICIAL
+
+    </div>
+
+
+    <button
+      class="btn btn-primary"
+      onclick="copyPix()">
+
+      📋 Copiar chave PIX
+
+    </button>
+
+
+    <div
+      id="copyMsg"
+      style="margin-top:10px;color:var(--lime);font-size:13px">
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     TRANSPARÊNCIA
+========================= -->
+
+<section
+  id="transparencia"
+  class="section transparency">
+
+<div class="container trans-grid">
+
+
+  <div>
+
+    <div class="eyebrow">
+      Confiança
+    </div>
+
+    <h2
+      style="
+      font-size:46px;
+      line-height:1.05;
+      letter-spacing:-2px;
+      color:var(--dark)">
+
+      Transparência
+
+    </h2>
+
+    <p
+      style="
+      margin-top:16px;
+      color:var(--muted)">
+
+      Uma área organizada para publicar
+      documentos, relatórios e informações
+      sobre recursos e projetos.
+
+    </p>
+
+    <br>
+
+    <a
+      class="btn btn-dark"
+      href="#contato">
+
+      Ver documentos disponíveis
+
+    </a>
+
+  </div>
+
+
+  <div class="trans-box">
+
+    <h3>
+      Documentos e informações
+    </h3>
+
+
+    <ul class="trans-list">
+
+      <li>
+        <span>
+          📄 Prestação de contas
+        </span>
+
+        <b>
+          →
+        </b>
+      </li>
+
+      <li>
+        <span>
+          📊 Relatórios
+        </span>
+
+        <b>
+          →
+        </b>
+      </li>
+
+      <li>
+        <span>
+          ❤️ Doações recebidas
+        </span>
+
+        <b>
+          →
+        </b>
+      </li>
+
+      <li>
+        <span>
+          💰 Despesas e projetos
+        </span>
+
+        <b>
+          →
+        </b>
+      </li>
+
+      <li>
+        <span>
+          📁 Documentos da associação
+        </span>
+
+        <b>
+          →
+        </b>
+      </li>
+
+    </ul>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     NOTÍCIAS
+========================= -->
+
+<section
+  id="noticias"
+  class="section">
+
+<div class="container">
+
+
+  <div class="section-head">
+
+    <div>
+
+      <div class="eyebrow">
+        Acompanhe
+      </div>
+
+      <h2>
+        Notícias da ASSORIPA
+      </h2>
+
+    </div>
+
+    <p>
+
+      Um espaço para resgates,
+      campanhas, eventos, adoções
+      e novidades.
+
+    </p>
+
+  </div>
+
+
+  <div class="news">
+
+
+    <article class="news-card">
+
+      <img
+        src="https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=900&q=85"
+        alt="Cachorro">
+
+      <div>
+
+        <small>
+          RESGATE
+        </small>
+
+        <h3>
+          Uma nova chance começa com cuidado
+        </h3>
+
+        <p>
+
+          Conte aqui a história de um resgate
+          e como a comunidade pode ajudar.
+
+        </p>
+
+      </div>
+
+    </article>
+
+
+    <article class="news-card">
+
+      <img
+        src="https://images.unsplash.com/photo-1601758174114-e711c0cbaa69?auto=format&fit=crop&w=900&q=85"
+        alt="Animal">
+
+      <div>
+
+        <small>
+          ADOÇÃO
+        </small>
+
+        <h3>
+          Uma adoção que virou final feliz
+        </h3>
+
+        <p>
+
+          Mostre histórias de animais
+          que encontraram um novo lar.
+
+        </p>
+
+      </div>
+
+    </article>
+
+
+    <article class="news-card">
+
+      <img
+        src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=900&q=85"
+        alt="Cachorro">
+
+      <div>
+
+        <small>
+          CAMPANHA
+        </small>
+
+        <h3>
+          Como a comunidade pode participar
+        </h3>
+
+        <p>
+
+          Divulgue campanhas de arrecadação,
+          vacinação e eventos.
+
+        </p>
+
+      </div>
+
+    </article>
+
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     INSTAGRAM
+========================= -->
+
+<section
+  id="instagram"
+  class="section instagram">
+
+<div class="container">
+
+
+  <div class="section-head">
+
+    <div>
+
+      <div class="eyebrow">
+        Redes sociais
+      </div>
+
+      <h2>
+        Acompanhe no Instagram
+      </h2>
+
+    </div>
+
+    <p>
+
+      Veja o dia a dia, os resgates,
+      as adoções e muito mais.
+
+    </p>
+
+  </div>
+
+
+  <div class="insta-grid">
+
+    <img
+      src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=500&q=80">
+
+    <img
+      src="https://images.unsplash.com/photo-1519052537078-e6302a4968d4?auto=format&fit=crop&w=500&q=80">
+
+    <img
+      src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=500&q=80">
+
+    <img
+      src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=500&q=80">
+
+    <img
+      src="https://images.unsplash.com/photo-1560807707-8cc77767d783?auto=format&fit=crop&w=500&q=80">
+
+    <img
+      src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=500&q=80">
+
+  </div>
+
+
+  <div
+    style="
+    text-align:center;
+    margin-top:25px">
+
+    <a
+      class="btn btn-dark"
+      href="#"
+      onclick="
+      alert('Troque este link pelo Instagram oficial da ASSORIPA.');
+      return false;">
+
+      📸 Seguir no Instagram
+
+    </a>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     CONTATO
+========================= -->
+
+<section
+  id="contato"
+  class="section contact">
+
+<div class="container">
+
+
+  <div class="section-head">
+
+    <div>
+
+      <div class="eyebrow">
+        Contato
+      </div>
+
+      <h2>
+        Fale com a ASSORIPA
+      </h2>
+
+    </div>
+
+    <p>
+
+      Deixe os dados oficiais da associação
+      aqui para facilitar o contato.
+
+    </p>
+
+  </div>
+
+
+  <div class="contact-grid">
+
+
+    <div class="contact-card">
+
+
+      <div class="contact-item">
+
+        <div class="icon">
+          📱
+        </div>
+
+        <div>
+
+          <b>
+            WhatsApp
+          </b>
+
+          <span>
+            (00) 00000-0000
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="contact-item">
+
+        <div class="icon">
+          ✉️
+        </div>
+
+        <div>
+
+          <b>
+            E-mail
+          </b>
+
+          <span>
+            contato@assoripa.com.br
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="contact-item">
+
+        <div class="icon">
+          📍
+        </div>
+
+        <div>
+
+          <b>
+            Localização
+          </b>
+
+          <span>
+            Visconde do Rio Branco — MG
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="contact-item">
+
+        <div class="icon">
+          🕐
+        </div>
+
+        <div>
+
+          <b>
+            Atendimento
+          </b>
+
+          <span>
+            Informe os horários oficiais
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <a
+        class="btn btn-primary"
+        href="#"
+        onclick="
+        alert('Troque pelo WhatsApp oficial da ASSORIPA.');
+        return false;">
+
+        💬 Falar pelo WhatsApp
+
+      </a>
+
+
+    </div>
+
+
+    <div class="map">
+
+      <a
+        class="btn"
+        href="#"
+        onclick="
+        alert('Adicione aqui o link oficial do Google Maps.');
+        return false;">
+
+        📍 Abrir localização
+
+      </a>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+<div class="container">
+
+
+  <div class="footer-grid">
+
+
+    <div>
+
+      <div class="logo">
+
+        <span class="logo-mark">
+          🐾
+        </span>
+
+        <span>
+
+          ASSORIPA
+
+          <small>
+            Associação Rio-Branquense
+            de Proteção aos Animais
+          </small>
+
+        </span>
+
+      </div>
+
+
+      <p style="margin-top:18px;max-width:390px">
+
+        Uma segunda chance começa com você.
+        Juntos, podemos transformar vidas
+        e construir um futuro melhor para os animais.
+
+      </p>
+
+    </div>
+
+
+    <div>
+
+      <h4>
+        Explorar
+      </h4>
+
+      <ul>
+
+        <li>
+          <a href="#sobre">
+            Sobre
+          </a>
+        </li>
+
+        <li>
+          <a href="#animais">
+            Animais
+          </a>
+        </li>
+
+        <li>
+          <a href="#ajudar">
+            Como ajudar
+          </a>
+        </li>
+
+        <li>
+          <a href="#noticias">
+            Notícias
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+
+
+    <div>
+
+      <h4>
+        Ajude
+      </h4>
+
+      <ul>
+
+        <li>
+          <a href="#doacao">
+            Doação
+          </a>
+        </li>
+
+        <li>
+          <a href="#animais">
+            Adoção
+          </a>
+        </li>
+
+        <li>
+          <a href="#contato">
+            Voluntariado
+          </a>
+        </li>
+
+        <li>
+          <a href="#instagram">
+            Divulgue
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+
+
+    <div>
+
+      <h4>
+        Institucional
+      </h4>
+
+      <ul>
+
+        <li>
+          <a href="#transparencia">
+            Transparência
+          </a>
+        </li>
+
+        <li>
+          <a href="#contato">
+            Contato
+          </a>
+        </li>
+
+        <li>
+          <a href="#inicio">
+            Voltar ao topo ↑
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+
+
+  </div>
+
+
+  <div class="footer-bottom">
+
+    <div>
+      © 2026 ASSORIPA.
+      Todos os direitos reservados.
+    </div>
+
+    <div>
+      Protótipo desenvolvido pela WebPro.
+    </div>
+
+  </div>
+
+
+</div>
+
+</footer>
+
+
+<!-- =========================
+     MENU MOBILE
+========================= -->
+
+<div class="mobilebar">
+
+  <a href="#inicio">
+
+    <span>
+      ⌂
+    </span>
+
+    Início
+
+  </a>
+
+
+  <a href="#animais">
+
+    <span>
+      🐾
+    </span>
+
+    Animais
+
+  </a>
+
+
+  <a href="#ajudar">
+
+    <span>
+      ❤️
+    </span>
+
+    Ajudar
+
+  </a>
+
+
+  <a href="#contato">
+
+    <span>
+      💬
+    </span>
+
+    WhatsApp
+
+  </a>
+
+</div>
+
+
+<!-- =========================
+     MODAL DO ANIMAL
+========================= -->
+
+<div
+  class="modal"
+  id="animalModal"
+  onclick="closeModal(event)">
+
+
+  <div class="modal-box">
+
+
+    <button
+      class="close"
+      onclick="
+      document
+      .getElementById('animalModal')
+      .classList.remove('show')">
+
+      ×
+
+    </button>
+
+
+    <img
+      id="modalImg"
+      src=""
+      alt="">
+
+
+    <div class="modal-content">
+
+
+      <div class="eyebrow">
+        Perfil de adoção
+      </div>
+
+
+      <h2
+        id="modalName"
+        style="
+        font-size:38px;
+        color:var(--dark)">
+
+      </h2>
+
+
+      <p
+        id="modalInfo"
+        style="
+        color:var(--muted);
+        margin:8px 0 18px">
+
+      </p>
+
+
+      <p
+        id="modalText">
+
+      </p>
+
+
+      <br>
+
+
+      <a
+        class="btn btn-primary"
+        href="#contato"
+        onclick="
+        document
+        .getElementById('animalModal')
+        .classList.remove('show')">
+
+        ❤️ Quero adotar
+
+      </a>
+
+
+      <div class="notice">
+
+        Este é um protótipo.
+        Fotos, nomes, características e disponibilidade
+        devem ser substituídos pelos dados oficiais
+        da ASSORIPA.
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   ANIMAIS
+========================= */
+
+const animals = [
+
+  {
+    name:"Thor",
+    type:"cachorro",
+    age:"adulto",
+
+    info:"Macho • Adulto • Disponível para adoção",
+
+    img:
+    "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=900&q=85",
+
+    text:
+    "Thor é um exemplo de perfil. Aqui entrará sua história real, comportamento, cuidados e informações para adoção."
+  },
+
+
+  {
+    name:"Mel",
+    type:"gato",
+    age:"jovem",
+
+    info:"Fêmea • Jovem • Disponível para adoção",
+
+    img:
+    "https://images.unsplash.com/photo-1519052537078-e6302a4968d4?auto=format&fit=crop&w=900&q=85",
+
+    text:
+    "Mel é um exemplo de perfil. Substitua por informações aprovadas pela associação."
+  },
+
+
+  {
+    name:"Luna",
+    type:"cachorro",
+    age:"filhote",
+
+    info:"Fêmea • Filhote • Disponível para adoção",
+
+    img:
+    "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=900&q=85",
+
+    text:
+    "Luna é um exemplo de perfil. Conte aqui sua história e o tipo de lar que procura."
+  },
+
+
+  {
+    name:"Simba",
+    type:"gato",
+    age:"adulto",
+
+    info:"Macho • Adulto • Disponível para adoção",
+
+    img:
+    "https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=900&q=85",
+
+    text:
+    "Simba é um exemplo de perfil. Conte aqui sua história real e como ajudar."
+  },
+
+
+  {
+    name:"Pipoca",
+    type:"cachorro",
+    age:"idoso",
+
+    info:"Fêmea • Idosa • Precisa de cuidados",
+
+    img:
+    "https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=900&q=85",
+
+    text:
+    "Pipoca é um exemplo de perfil para mostrar como também podemos destacar animais idosos."
+  },
+
+
+  {
+    name:"Nina",
+    type:"gato",
+    age:"filhote",
+
+    info:"Fêmea • Filhote • Disponível para adoção",
+
+    img:
+    "https://images.unsplash.com/photo-1560807707-8cc77767d783?auto=format&fit=crop&w=900&q=85",
+
+    text:
+    "Nina é um exemplo de perfil. Substitua pelos dados oficiais."
+  },
+
+
+  {
+    name:"Max",
+    type:"cachorro",
+    age:"adulto",
+
+    info:"Macho • Adulto • Disponível para adoção",
+
+    img:
+    "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=900&q=85",
+
+    text:
+    "Max é um exemplo de perfil para a página de adoção."
+  },
+
+
+  {
+    name:"Amora",
+    type:"gato",
+    age:"idoso",
+
+    info:"Fêmea • Idosa • Precisa de cuidados",
+
+    img:
+    "https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=900&q=85",
+
+    text:
+    "Amora é um exemplo de perfil para destacar adoções especiais."
+  }
+
+];
+
+
+/* =========================
+   RENDERIZAR ANIMAIS
+========================= */
+
+function renderAnimals(filter="todos"){
+
+  const grid =
+    document.getElementById("animalGrid");
+
+  grid.innerHTML="";
+
+
+  animals
+
+    .filter(
+
+      animal =>
+
+      filter === "todos" ||
+
+      animal.type === filter ||
+
+      animal.age === filter
+
+    )
+
+    .forEach(animal => {
+
+
+      grid.innerHTML += `
+
+        <article class="animal">
+
+          <img
+            src="${animal.img}"
+            alt="${animal.name}">
+
+
+          <div class="animal-body">
+
+            <h3>
+              ${animal.name}
+            </h3>
+
+
+            <div class="meta">
+              ${animal.info}
+            </div>
+
+
+            <span class="tag">
+              🐾 Disponível / exemplo
+            </span>
+
+
+            <button
+              class="btn btn-dark"
+              onclick='openAnimal(${JSON.stringify(animal)})'>
+
+              Conhecer mais →
+
+            </button>
+
+          </div>
+
+        </article>
+
+      `;
+
+    });
+
+}
+
+
+/* =========================
+   FILTROS
+========================= */
+
+document
+.querySelectorAll(".filter")
+.forEach(button => {
+
+  button.addEventListener(
+    "click",
+    () => {
+
+
+      document
+      .querySelectorAll(".filter")
+      .forEach(btn => {
+
+        btn.classList.remove("active");
+
+      });
+
+
+      button.classList.add("active");
+
+
+      renderAnimals(
+        button.dataset.filter
+      );
+
+    }
+  );
+
+});
+
+
+/* =========================
+   MODAL
+========================= */
+
+function openAnimal(animal){
+
+  document
+  .getElementById("modalImg")
+  .src = animal.img;
+
+
+  document
+  .getElementById("modalName")
+  .textContent = animal.name;
+
+
+  document
+  .getElementById("modalInfo")
+  .textContent = animal.info;
+
+
+  document
+  .getElementById("modalText")
+  .textContent = animal.text;
+
+
+  document
+  .getElementById("animalModal")
+  .classList.add("show");
+
+}
+
+
+function closeModal(event){
+
+  if(
+    event.target.id === "animalModal"
+  ){
+
+    event.currentTarget
+    .classList.remove("show");
+
+  }
+
+}
+
+
+/* =========================
+   COPIAR PIX
+========================= */
+
+function copyPix(){
+
+  const value =
+    document
+    .getElementById("pixKey")
+    .textContent;
+
+
+  if(
+    navigator.clipboard
+  ){
+
+    navigator.clipboard
+    .writeText(value);
+
+  }
+
+
+  document
+  .getElementById("copyMsg")
+  .textContent =
+  "Chave copiada. Troque pelo PIX oficial antes de publicar.";
+
+}
+
+
+/* =========================
+   MENU MOBILE
+========================= */
+
+function toggleMenu(){
+
+  const nav =
+    document.querySelector(".navlinks");
+
+
+  const open =
+    nav.style.display === "flex";
+
+
+  nav.style.cssText =
+    open
+
+    ?
+
+    ""
+
+    :
+
+    `
+      display:flex;
+      position:absolute;
+      top:68px;
+      left:0;
+      right:0;
+      background:#08251a;
+      padding:18px;
+      flex-direction:column;
+      align-items:stretch;
+    `;
+
+}
+
+
+/* =========================
+   INICIAR
+========================= */
+
+renderAnimals();
+
+</script>
+
+</body>
+</html>
