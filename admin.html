@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<title>Painel ASSORIPA</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f1f4f1;
+    color:#202620;
+}
+
+.login{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.login-box{
+    width:100%;
+    max-width:430px;
+    background:white;
+    padding:40px;
+    border-radius:25px;
+    box-shadow:0 20px 60px rgba(0,0,0,.1);
+}
+
+.logo{
+    text-align:center;
+    font-size:30px;
+    font-weight:900;
+    color:#23834b;
+    margin-bottom:30px;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    padding:14px;
+    margin-top:8px;
+    margin-bottom:18px;
+    border:1px solid #d9ded9;
+    border-radius:10px;
+    font-size:16px;
+}
+
+textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+label{
+    font-weight:700;
+}
+
+button{
+    border:none;
+    cursor:pointer;
+}
+
+.btn{
+    width:100%;
+    padding:15px;
+    border-radius:11px;
+    font-size:16px;
+    font-weight:800;
+}
+
+.btn-primary{
+    background:#27884e;
+    color:white;
+}
+
+.btn-danger{
+    background:#d64545;
+    color:white;
+}
+
+.btn-dark{
+    background:#202820;
+    color:white;
+}
+
+.dashboard{
+    display:none;
+    max-width:1200px;
+    margin:auto;
+    padding:35px 20px;
+}
+
+.top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:35px;
+    gap:20px;
+}
+
+.top h1{
+    font-size:35px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.stat{
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+}
+
+.stat strong{
+    display:block;
+    font-size:35px;
+    color:#27884e;
+}
+
+.panel{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    margin-bottom:30px;
+}
+
+.dog-list{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.dog{
+    border:1px solid #e1e6e1;
+    border-radius:16px;
+    overflow:hidden;
+}
+
+.dog img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.dog-body{
+    padding:18px;
+}
+
+.dog-body h3{
+    margin-bottom:7px;
+}
+
+.actions{
+    display:flex;
+    gap:8px;
+    margin-top:15px;
+}
+
+.actions button{
+    flex:1;
+    padding:11px;
+    border-radius:8px;
+    color:white;
+    font-weight:700;
+}
+
+.message{
+    padding:12px;
+    border-radius:10px;
+    background:#eef8f0;
+    color:#277143;
+    margin-bottom:20px;
+    display:none;
+}
+
+@media(max-width:800px){
+
+    .stats,
+    .dog-list{
+        grid-template-columns:1fr;
+    }
+
+    .top{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .panel{
+        padding:20px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login" id="login">
+
+<div class="login-box">
+
+<div class="logo">
+ASSORIPA 🐾
+</div>
+
+<h2 style="margin-bottom:20px;">
+Área administrativa
+</h2>
+
+<label>
+E-mail
+</label>
+
+<input
+type="email"
+id="email"
+placeholder="seu@email.com"
+>
+
+<label>
+Senha
+</label>
+
+<input
+type="password"
+id="password"
+placeholder="Sua senha"
+>
+
+<button
+class="btn btn-primary"
+onclick="entrar()"
+>
+Entrar
+</button>
+
+<p
+id="loginError"
+style="color:#c33;margin-top:15px;"
+></p>
+
+</div>
+
+</div>
+
+
+<div class="dashboard" id="dashboard">
+
+<div class="top">
+
+<div>
+
+<h1>
+Painel ASSORIPA 🐾
+</h1>
+
+<p>
+Gerencie os animais do site.
+</p>
+
+</div>
+
+<button
+class="btn btn-dark"
+style="width:auto;"
+onclick="sair()"
+>
+Sair
+</button>
+
+</div>
+
+
+<div
+class="message"
+id="message"
+></div>
+
+
+<div class="stats">
+
+<div class="stat">
+
+<strong id="total">
+0
+</strong>
+
+Animais cadastrados
+
+</div>
+
+<div class="stat">
+
+<strong id="available">
+0
+</strong>
+
+Disponíveis
+
+</div>
+
+<div class="stat">
+
+<strong id="adopted">
+0
+</strong>
+
+Adotados
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h2 style="margin-bottom:25px;">
+🐶 Cadastrar novo resgatado
+</h2>
+
+<label>
+Nome
+</label>
+
+<input
+id="dogName"
+placeholder="Ex.: Thor"
+>
+
+<label>
+Idade
+</label>
+
+<input
+id="dogAge"
+placeholder="Ex.: 2 anos"
+>
+
+<label>
+Sexo
+</label>
+
+<select id="dogGender">
+
+<option value="">
+Selecione
+</option>
+
+<option value="Macho">
+Macho
+</option>
+
+<option value="Fêmea">
+Fêmea
+</option>
+
+</select>
+
+<label>
+História
+</label>
+
+<textarea
+id="dogDescription"
+placeholder="Conte um pouco sobre o animal..."
+></textarea>
+
+<label>
+Foto
+</label>
+
+<input
+type="file"
+id="dogPhoto"
+accept="image/*"
+>
+
+<button
+class="btn btn-primary"
+onclick="cadastrarDog()"
+>
+🐾 Publicar no site
+</button>
+
+</div>
+
+
+<div class="panel">
+
+<h2 style="margin-bottom:25px;">
+Animais cadastrados
+</h2>
+
+<div
+class="dog-list"
+id="dogList"
+>
+</div>
+
+</div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const SUPABASE_URL =
+"COLOQUE_SUA_URL_AQUI";
+
+const SUPABASE_ANON_KEY =
+"COLOQUE_SUA_CHAVE_AQUI";
+
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+);
+
+
+async function verificarLogin(){
+
+    const {
+        data:{
+            session
+        }
+    } =
+    await supabaseClient.auth.getSession();
+
+    if(session){
+
+        document.getElementById("login").style.display =
+            "none";
+
+        document.getElementById("dashboard").style.display =
+            "block";
+
+        carregarDogs();
+
+    }
+
+}
+
+
+async function entrar(){
+
+    const email =
+        document.getElementById("email").value;
+
+    const password =
+        document.getElementById("password").value;
+
+    const {
+        error
+    } =
+    await supabaseClient.auth.signInWithPassword({
+        email,
+        password
+    });
+
+    if(error){
+
+        document.getElementById("loginError").textContent =
+            "E-mail ou senha incorretos.";
+
+        return;
+
+    }
+
+    document.getElementById("login").style.display =
+        "none";
+
+    document.getElementById("dashboard").style.display =
+        "block";
+
+    carregarDogs();
+
+}
+
+
+async function sair(){
+
+    await supabaseClient.auth.signOut();
+
+    location.reload();
+
+}
+
+
+async function cadastrarDog(){
+
+    const name =
+        document.getElementById("dogName").value.trim();
+
+    const age =
+        document.getElementById("dogAge").value.trim();
+
+    const gender =
+        document.getElementById("dogGender").value;
+
+    const description =
+        document.getElementById("dogDescription").value.trim();
+
+    const photo =
+        document.getElementById("dogPhoto").files[0];
+
+    if(!name){
+
+        alert("Digite o nome do animal.");
+
+        return;
+
+    }
+
+    let photoUrl = null;
+
+
+    if(photo){
+
+        const fileName =
+            Date.now() + "-" +
+            photo.name.replace(/\s/g,"-");
+
+        const {
+            error:uploadError
+        } =
+        await supabaseClient.storage
+            .from("dogs")
+            .upload(fileName,photo);
+
+        if(uploadError){
+
+            alert(
+                "Erro ao enviar foto: " +
+                uploadError.message
+            );
+
+            return;
+
+        }
+
+        const {
+            data
+        } =
+        supabaseClient.storage
+            .from("dogs")
+            .getPublicUrl(fileName);
+
+        photoUrl =
+            data.publicUrl;
+
+    }
+
+
+    const {
+        error
+    } =
+    await supabaseClient
+        .from("dogs")
+        .insert({
+
+            name:name,
+
+            age:age,
+
+            gender:gender,
+
+            description:description,
+
+            photo_url:photoUrl,
+
+            status:"disponivel"
+
+        });
+
+
+    if(error){
+
+        alert(
+            "Erro ao cadastrar: " +
+            error.message
+        );
+
+        return;
+
+    }
+
+
+    mostrarMensagem(
+        "Animal publicado com sucesso! ❤️"
+    );
+
+
+    document.getElementById("dogName").value="";
+    document.getElementById("dogAge").value="";
+    document.getElementById("dogGender").value="";
+    document.getElementById("dogDescription").value="";
+    document.getElementById("dogPhoto").value="";
+
+
+    carregarDogs();
+
+}
+
+
+async function carregarDogs(){
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .from("dogs")
+        .select("*")
+        .order("created_at",{
+            ascending:false
+        });
+
+
+    if(error){
+
+        console.error(error);
+
+        return;
+
+    }
+
+
+    document.getElementById("total").textContent =
+        data.length;
+
+    document.getElementById("available").textContent =
+        data.filter(
+            dog => dog.status === "disponivel"
+        ).length;
+
+    document.getElementById("adopted").textContent =
+        data.filter(
+            dog => dog.status === "adotado"
+        ).length;
+
+
+    const list =
+        document.getElementById("dogList");
+
+    list.innerHTML="";
+
+
+    data.forEach(dog => {
+
+        const div =
+        document.createElement("div");
+
+        div.className="dog";
+
+
+        div.innerHTML=`
+
+            <img
+                src="${
+                    dog.photo_url ||
+                    "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=900&q=80"
+                }"
+            >
+
+            <div class="dog-body">
+
+                <h3>
+                    ${dog.name}
+                </h3>
+
+                <p>
+                    ${dog.age || ""}
+                    ${dog.gender ? " • "+dog.gender : ""}
+                </p>
+
+                <p style="
+                    margin-top:8px;
+                    color:#687068;
+                ">
+                    Status:
+                    <strong>
+                    ${
+                        dog.status === "adotado"
+                        ? "Adotado 🏠"
+                        : "Disponível ❤️"
+                    }
+                    </strong>
+                </p>
+
+                <div class="actions">
+
+                    <button
+                        style="background:#27884e;"
+                        onclick="alternarStatus('${dog.id}','${dog.status}')"
+                    >
+                        ${
+                            dog.status === "adotado"
+                            ? "↩ Disponibilizar"
+                            : "🏠 Adotado"
+                        }
+                    </button>
+
+                    <button
+                        style="background:#d64545;"
+                        onclick="excluirDog('${dog.id}')"
+                    >
+                        🗑 Excluir
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+        list.appendChild(div);
+
+    });
+
+}
+
+
+async function alternarStatus(id,statusAtual){
+
+    const novoStatus =
+        statusAtual === "adotado"
+        ? "disponivel"
+        : "adotado";
+
+
+    const {
+        error
+    } =
+    await supabaseClient
+        .from("dogs")
+        .update({
+            status:novoStatus
+        })
+        .eq("id",id);
+
+
+    if(error){
+
+        alert(
+            "Erro: " +
+            error.message
+        );
+
+        return;
+
+    }
+
+
+    carregarDogs();
+
+}
+
+
+async function excluirDog(id){
+
+    if(
+        !confirm(
+            "Tem certeza que deseja excluir este animal?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    const {
+        error
+    } =
+    await supabaseClient
+        .from("dogs")
+        .delete()
+        .eq("id",id);
+
+
+    if(error){
+
+        alert(
+            "Erro: " +
+            error.message
+        );
+
+        return;
+
+    }
+
+
+    carregarDogs();
+
+}
+
+
+function mostrarMensagem(texto){
+
+    const message =
+        document.getElementById("message");
+
+    message.textContent=texto;
+
+    message.style.display="block";
+
+    setTimeout(
+        ()=>{
+            message.style.display="none";
+        },
+        3500
+    );
+
+}
+
+
+verificarLogin();
+
+</script>
+
+</body>
+
+</html>
