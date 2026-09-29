@@ -2650,134 +2650,62 @@ footer ul{
 </div>
 
 
-<script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+   <script>
 
 /* =========================
    ANIMAIS
 ========================= */
 
-const animals = [
+let animals = [];
 
-  {
-    name:"Thor",
-    type:"cachorro",
-    age:"adulto",
+const SUPABASE_URL = "https://telluwvpgassaqwdzgtw.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_j_U-aqmnB1fBVoRWPyPw2g_dQfr7d-n";
 
-    info:"Macho • Adulto • Disponível para adoção",
+let supabaseClient = null;
 
-    img:
-    "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=900&q=85",
+function classificarIdade(idade) {
+  const texto = String(idade || "").toLowerCase();
 
-    text:
-    "Thor é um exemplo de perfil. Aqui entrará sua história real, comportamento, cuidados e informações para adoção."
-  },
+  if (texto.includes("filhote")) return "filhote";
+  if (texto.includes("idoso") || texto.includes("idosa")) return "idoso";
+  if (texto.includes("adulto") || texto.includes("adulta")) return "adulto";
 
+  return "";
+}
 
-  {
-    name:"Mel",
-    type:"gato",
-    age:"jovem",
+async function carregarAnimais() {
+  try {
+    const { data, error } = await supabaseClient
+      .from("dogs")
+      .select("*")
+      .eq("status", "disponivel")
+      .order("created_at", { ascending: false });
 
-    info:"Fêmea • Jovem • Disponível para adoção",
+    if (error) {
+      console.error("Erro ao carregar animais:", error);
+      return;
+    }
 
-    img:
-    "https://images.unsplash.com/photo-1519052537078-e6302a4968d4?auto=format&fit=crop&w=900&q=85",
+    animals = (data || []).map(dog => ({
+      name: dog.name || "Animal",
+      type: "cachorro",
+      age: classificarIdade(dog.age),
+      info: [
+        dog.gender || "",
+        dog.age || "",
+        "Disponível para adoção"
+      ].filter(Boolean).join(" • "),
+      img: dog.photo_url || "https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=900&q=80",
+      text: dog.description || "Entre em contato com a ASSORIPA para saber mais sobre este animal."
+    }));
 
-    text:
-    "Mel é um exemplo de perfil. Substitua por informações aprovadas pela associação."
-  },
+    renderAnimals();
 
-
-  {
-    name:"Luna",
-    type:"cachorro",
-    age:"filhote",
-
-    info:"Fêmea • Filhote • Disponível para adoção",
-
-    img:
-    "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=900&q=85",
-
-    text:
-    "Luna é um exemplo de perfil. Conte aqui sua história e o tipo de lar que procura."
-  },
-
-
-  {
-    name:"Simba",
-    type:"gato",
-    age:"adulto",
-
-    info:"Macho • Adulto • Disponível para adoção",
-
-    img:
-    "https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=900&q=85",
-
-    text:
-    "Simba é um exemplo de perfil. Conte aqui sua história real e como ajudar."
-  },
-
-
-  {
-    name:"Pipoca",
-    type:"cachorro",
-    age:"idoso",
-
-    info:"Fêmea • Idosa • Precisa de cuidados",
-
-    img:
-    "https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=900&q=85",
-
-    text:
-    "Pipoca é um exemplo de perfil para mostrar como também podemos destacar animais idosos."
-  },
-
-
-  {
-    name:"Nina",
-    type:"gato",
-    age:"filhote",
-
-    info:"Fêmea • Filhote • Disponível para adoção",
-
-    img:
-    "https://images.unsplash.com/photo-1560807707-8cc77767d783?auto=format&fit=crop&w=900&q=85",
-
-    text:
-    "Nina é um exemplo de perfil. Substitua pelos dados oficiais."
-  },
-
-
-  {
-    name:"Max",
-    type:"cachorro",
-    age:"adulto",
-
-    info:"Macho • Adulto • Disponível para adoção",
-
-    img:
-    "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=900&q=85",
-
-    text:
-    "Max é um exemplo de perfil para a página de adoção."
-  },
-
-
-  {
-    name:"Amora",
-    type:"gato",
-    age:"idoso",
-
-    info:"Fêmea • Idosa • Precisa de cuidados",
-
-    img:
-    "https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=900&q=85",
-
-    text:
-    "Amora é um exemplo de perfil para destacar adoções especiais."
+  } catch (erro) {
+    console.error("Erro inesperado:", erro);
   }
-
-];
+};
 
 
 /* =========================
@@ -3008,7 +2936,12 @@ function toggleMenu(){
    INICIAR
 ========================= */
 
-renderAnimals();
+supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+
+carregarAnimais();
 <script>
 
 </body>
