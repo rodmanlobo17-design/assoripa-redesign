@@ -3011,6 +3011,534 @@ function toggleMenu(){
 renderAnimals();
 
 </script>
+   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+/* ==========================================
+   SUPABASE
+========================================== */
+
+const SUPABASE_URL =
+"https://telluwvpgassaqwdzgtw.supabase.co";
+
+const SUPABASE_ANON_KEY =
+"sb_publishable_j_U-aqmnB1fBVoRWPyPw2g_dQfr7d-n";
+
+const supabaseClient =
+window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+
+
+/* ==========================================
+   ANIMAIS
+========================================== */
+
+let animals = [];
+
+
+/* ==========================================
+   ESCAPAR TEXTO
+========================================== */
+
+function escapeHTML(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* ==========================================
+   CLASSIFICAR IDADE
+========================================== */
+
+function classificarIdade(idade){
+
+  const texto =
+    String(idade || "").toLowerCase();
+
+  if(
+    texto.includes("filhote") ||
+    texto.includes("bebê") ||
+    texto.includes("bebe")
+  ){
+    return "filhote";
+  }
+
+  if(
+    texto.includes("idoso") ||
+    texto.includes("idosa")
+  ){
+    return "idoso";
+  }
+
+  if(
+    texto.includes("jovem")
+  ){
+    return "jovem";
+  }
+
+  if(
+    texto.includes("adulto") ||
+    texto.includes("adulta")
+  ){
+    return "adulto";
+  }
+
+  return "";
+
+}
+
+
+/* ==========================================
+   CARREGAR ANIMAIS DO SUPABASE
+========================================== */
+
+async function carregarAnimais(){
+
+  const grid =
+    document.getElementById("animalGrid");
+
+  if(!grid){
+    return;
+  }
+
+  grid.innerHTML = `
+    <div style="
+      grid-column:1/-1;
+      text-align:center;
+      padding:40px;
+      color:#66766d;
+    ">
+      🐾 Carregando animais...
+    </div>
+  `;
+
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .from("dogs")
+    .select("*")
+    .eq("status","disponivel")
+    .order("created_at",{
+      ascending:false
+    });
+
+
+  if(error){
+
+    console.error(
+      "Erro ao carregar animais:",
+      error
+    );
+
+    grid.innerHTML = `
+      <div style="
+        grid-column:1/-1;
+        text-align:center;
+        padding:40px;
+        color:#66766d;
+      ">
+        Não foi possível carregar os animais agora.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  animals =
+    (data || []).map(dog => {
+
+      return {
+
+        id:dog.id,
+
+        name:dog.name || "Animal",
+
+        age:dog.age || "",
+
+        gender:dog.gender || "",
+
+        type:"",
+
+        ageClass:
+          classificarIdade(dog.age),
+
+        info:[
+          dog.gender,
+          dog.age,
+          "Disponível para adoção"
+        ]
+        .filter(Boolean)
+        .join(" • "),
+
+        img:
+          dog.photo_url ||
+          "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=900&q=85",
+
+        text:
+          dog.description ||
+          "Entre em contato com a ASSORIPA para saber mais sobre este animal."
+
+      };
+
+    });
+
+
+  renderAnimals();
+
+}
+
+
+/* ==========================================
+   RENDERIZAR ANIMAIS
+========================================== */
+
+function renderAnimals(filter="todos"){
+
+  const grid =
+    document.getElementById("animalGrid");
+
+  if(!grid){
+    return;
+  }
+
+  grid.innerHTML = "";
+
+
+  let lista = animals;
+
+
+  if(filter !== "todos"){
+
+    lista =
+      animals.filter(animal => {
+
+        return animal.ageClass === filter;
+
+      });
+
+  }
+
+
+  if(lista.length === 0){
+
+    grid.innerHTML = `
+      <div style="
+        grid-column:1/-1;
+        text-align:center;
+        padding:50px 20px;
+        color:#66766d;
+      ">
+
+        <div style="
+          font-size:40px;
+          margin-bottom:12px;
+        ">
+          🐾
+        </div>
+
+        <strong>
+          Nenhum animal encontrado.
+        </strong>
+
+        <p style="margin-top:8px;">
+          Novos animais serão publicados aqui pela ASSORIPA.
+        </p>
+
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  lista.forEach(animal => {
+
+    const article =
+      document.createElement("article");
+
+    article.className = "animal";
+
+
+    const img =
+      document.createElement("img");
+
+    img.src = animal.img;
+
+    img.alt =
+      "Foto de " + animal.name;
+
+    img.onerror = function(){
+
+      this.src =
+        "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=900&q=85";
+
+    };
+
+
+    const body =
+      document.createElement("div");
+
+    body.className = "animal-body";
+
+
+    const title =
+      document.createElement("h3");
+
+    title.textContent =
+      animal.name;
+
+
+    const meta =
+      document.createElement("div");
+
+    meta.className = "meta";
+
+    meta.textContent =
+      animal.info ||
+      "Disponível para adoção";
+
+
+    const tag =
+      document.createElement("span");
+
+    tag.className = "tag";
+
+    tag.textContent =
+      "🐾 Disponível para adoção";
+
+
+    const button =
+      document.createElement("button");
+
+    button.className =
+      "btn btn-dark";
+
+    button.textContent =
+      "Conhecer mais →";
+
+
+    button.addEventListener(
+      "click",
+      function(){
+
+        openAnimal(animal);
+
+      }
+    );
+
+
+    body.appendChild(title);
+
+    body.appendChild(meta);
+
+    body.appendChild(tag);
+
+    body.appendChild(button);
+
+    article.appendChild(img);
+
+    article.appendChild(body);
+
+    grid.appendChild(article);
+
+  });
+
+}
+
+
+/* ==========================================
+   FILTROS
+========================================== */
+
+document
+.querySelectorAll(".filter")
+.forEach(button => {
+
+  button.addEventListener(
+    "click",
+    function(){
+
+      document
+      .querySelectorAll(".filter")
+      .forEach(btn => {
+
+        btn.classList.remove("active");
+
+      });
+
+
+      this.classList.add("active");
+
+
+      renderAnimals(
+        this.dataset.filter
+      );
+
+    }
+  );
+
+});
+
+
+/* ==========================================
+   MODAL DO ANIMAL
+========================================== */
+
+function openAnimal(animal){
+
+  const modalImg =
+    document.getElementById("modalImg");
+
+  const modalName =
+    document.getElementById("modalName");
+
+  const modalInfo =
+    document.getElementById("modalInfo");
+
+  const modalText =
+    document.getElementById("modalText");
+
+  const modal =
+    document.getElementById("animalModal");
+
+
+  modalImg.src =
+    animal.img;
+
+  modalImg.alt =
+    animal.name;
+
+
+  modalName.textContent =
+    animal.name;
+
+
+  modalInfo.textContent =
+    animal.info;
+
+
+  modalText.textContent =
+    animal.text;
+
+
+  modal.classList.add("show");
+
+}
+
+
+function closeModal(event){
+
+  if(
+    event.target.id ===
+    "animalModal"
+  ){
+
+    event.currentTarget
+      .classList.remove("show");
+
+  }
+
+}
+
+
+/* ==========================================
+   COPIAR PIX
+========================================== */
+
+function copyPix(){
+
+  const value =
+    document
+      .getElementById("pixKey")
+      .textContent;
+
+
+  if(
+    navigator.clipboard
+  ){
+
+    navigator.clipboard
+      .writeText(value);
+
+  }
+
+
+  const mensagem =
+    document.getElementById("copyMsg");
+
+
+  if(mensagem){
+
+    mensagem.textContent =
+      "Chave copiada.";
+
+  }
+
+}
+
+
+/* ==========================================
+   MENU MOBILE
+========================================== */
+
+function toggleMenu(){
+
+  const nav =
+    document.querySelector(
+      ".navlinks"
+    );
+
+
+  const open =
+    nav.style.display === "flex";
+
+
+  nav.style.cssText =
+    open
+
+    ?
+
+    ""
+
+    :
+
+    `
+      display:flex;
+      position:absolute;
+      top:68px;
+      left:0;
+      right:0;
+      background:#08251a;
+      padding:18px;
+      flex-direction:column;
+      align-items:stretch;
+    `;
+
+}
+
+
+/* ==========================================
+   INICIAR SITE
+========================================== */
+
+carregarAnimais();
+
+
+</script>
 
 </body>
 </html>
